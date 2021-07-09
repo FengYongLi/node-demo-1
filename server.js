@@ -25,13 +25,17 @@ var server = http.createServer(function(request, response){
     response.write(`
         <!DOCTYPE html>
         <head>
+          <link rel="stylesheet" href="/x">
         </head>
-      `);
-    response.write(`
         <body>
-          <h1 style=color:red>变红色了</h1>
+          <script src="/y"></script>
+          <h1>变红色了</h1>
         </body
       `);
+    response.end();
+  }else if(path === '/x'){
+    response.setHeader("Content-Type","text/css;charset=utf-8");
+    response.write(`body{color: red;}\n`);
     response.end();
   }else{
     response.statusCode = 404;
